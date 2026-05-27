@@ -1,0 +1,87 @@
+name: KBase CI/CD
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  backend:
+    name: Build and test backend services
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service:
+          - eureka-server
+          - api-gateway
+          - user-service
+          - project-service
+          - document-service
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+      - name: Build ${{ matrix.service }}
+        working-directory: BE/${{ matrix.service }}
+        run: mvn -B clean test package
+
+  frontend:
+    name: Build frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Install dependencies
+        working-directory: FE/kbase-frontend
+        run: npm install
+      - name: Build frontend
+        working-directory: FE/kbase-frontend
+        run: npm run build
+
+  docker:
+    name: Build and push Docker images
+    runs-on: ubuntu-latest
+    needs: [backend, frontend]
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: eureka-server
+            context: BE/eureka-server
+          - image: api-gateway
+            context: BE/api-gateway
+          - image: user-service
+            context: BE/user-service
+          - image: project-service
+            context: BE/project-service
+          - image: document-service
+            context: BE/document-service
+          - image: kbase-frontend
+            context: FE/kbase-frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        if: github.event_name == 'push'
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.context }}
+          push: ${{ github.event_name == 'push' }}
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}/${{ matrix.image }}:${{ github.sha }}
