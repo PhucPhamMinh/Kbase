@@ -14,9 +14,6 @@ FROM node:22.13-alpine
 WORKDIR /app
 ENV NODE_ENV=production
 
-# DÒNG BẠN ĐANG THIẾU: Copy thư mục public để không bị mất hình ảnh (Lỗi 404)
-COPY --from=build /app/public ./public 
-
 COPY --from=build /app/.next/standalone ./
 COPY --from=build /app/.next/static ./.next/static
 EXPOSE 3000
