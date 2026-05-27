@@ -1,7 +1,10 @@
+# version: '3.8'
+
 # services:
 #   postgres:
 #     image: postgres:16-alpine
 #     container_name: kbase-postgres
+#     restart: unless-stopped
 #     environment:
 #       POSTGRES_USER: postgres
 #       POSTGRES_PASSWORD: postgres
@@ -15,10 +18,13 @@
 #       interval: 10s
 #       timeout: 5s
 #       retries: 5
+#     networks:
+#       - kbase-network
 
 #   pgadmin:
 #     image: dpage/pgadmin4:8
 #     container_name: kbase-pgadmin
+#     restart: unless-stopped
 #     environment:
 #       PGADMIN_DEFAULT_EMAIL: admin@kbase.com
 #       PGADMIN_DEFAULT_PASSWORD: admin
@@ -29,41 +35,54 @@
 #         condition: service_healthy
 #     volumes:
 #       - pgadmin-data:/var/lib/pgadmin
+#     networks:
+#       - kbase-network
 
 #   eureka-server:
 #     build: ./BE/eureka-server
+#     container_name: kbase-eureka
+#     restart: unless-stopped
 #     ports:
 #       - "8761:8761"
-#     depends_on:
-#       postgres:
-#         condition: service_healthy
+#     networks:
+#       - kbase-network
 
 #   api-gateway:
 #     build: ./BE/api-gateway
+#     container_name: kbase-gateway
+#     restart: unless-stopped
 #     ports:
 #       - "8080:8080"
 #     environment:
-#       JWT_SECRET: ${JWT_SECRET:-change-this-secret-to-at-least-32-characters}
+#       JWT_SECRET: ${JWT_SECRET}
 #       EUREKA_URI: http://eureka-server:8761/eureka
 #     depends_on:
 #       - eureka-server
+#     networks:
+#       - kbase-network
 
 #   user-service:
 #     build: ./BE/user-service
+#     container_name: kbase-user-service
+#     restart: unless-stopped
 #     environment:
 #       DB_URL: jdbc:postgresql://postgres:5432/user_db
 #       DB_USERNAME: postgres
 #       DB_PASSWORD: postgres
-#       JWT_SECRET: ${JWT_SECRET:-change-this-secret-to-at-least-32-characters}
+#       JWT_SECRET: ${JWT_SECRET}
 #       EUREKA_URI: http://eureka-server:8761/eureka
 #     depends_on:
 #       postgres:
 #         condition: service_healthy
 #       eureka-server:
 #         condition: service_started
+#     networks:
+#       - kbase-network
 
 #   project-service:
 #     build: ./BE/project-service
+#     container_name: kbase-project-service
+#     restart: unless-stopped
 #     environment:
 #       DB_URL: jdbc:postgresql://postgres:5432/project_db
 #       DB_USERNAME: postgres
@@ -74,37 +93,51 @@
 #         condition: service_healthy
 #       eureka-server:
 #         condition: service_started
+#     networks:
+#       - kbase-network
 
 #   document-service:
 #     build: ./BE/document-service
+#     container_name: kbase-document-service
+#     restart: unless-stopped
 #     environment:
 #       DB_URL: jdbc:postgresql://postgres:5432/document_db
 #       DB_USERNAME: postgres
 #       DB_PASSWORD: postgres
-#       AWS_REGION: ${AWS_REGION:-us-east-1}
-#       AWS_S3_BUCKET: ${AWS_S3_BUCKET:-kbase-documents}
-#       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
-#       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+#       # AWS values are loaded from the .env file.
+#       AWS_REGION: ${AWS_REGION}
+#       AWS_S3_BUCKET: ${AWS_S3_BUCKET}
+#       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+#       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
 #       EUREKA_URI: http://eureka-server:8761/eureka
 #     depends_on:
 #       postgres:
 #         condition: service_healthy
 #       eureka-server:
 #         condition: service_started
+#     networks:
+#       - kbase-network
 
 #   kbase-frontend:
 #     build: ./FE/kbase-frontend
+#     container_name: kbase-frontend
+#     restart: unless-stopped
 #     ports:
 #       - "3000:3000"
 #     environment:
 #       NEXT_PUBLIC_API_BASE_URL: http://localhost:8080
 #     depends_on:
 #       - api-gateway
+#     networks:
+#       - kbase-network
 
 # volumes:
 #   postgres-data:
 #   pgadmin-data:
 
+# networks:
+#   kbase-network:
+#     driver: bridge
 version: '3.8'
 
 services:
@@ -147,6 +180,7 @@ services:
 
   eureka-server:
     build: ./BE/eureka-server
+    image: phucpham2212/kbase-eureka-server:latest
     container_name: kbase-eureka
     restart: unless-stopped
     ports:
@@ -156,6 +190,7 @@ services:
 
   api-gateway:
     build: ./BE/api-gateway
+    image: phucpham2212/kbase-api-gateway:latest
     container_name: kbase-gateway
     restart: unless-stopped
     ports:
@@ -170,6 +205,7 @@ services:
 
   user-service:
     build: ./BE/user-service
+    image: phucpham2212/kbase-user-service:latest
     container_name: kbase-user-service
     restart: unless-stopped
     environment:
@@ -188,6 +224,7 @@ services:
 
   project-service:
     build: ./BE/project-service
+    image: phucpham2212/kbase-project-service:latest
     container_name: kbase-project-service
     restart: unless-stopped
     environment:
@@ -205,6 +242,7 @@ services:
 
   document-service:
     build: ./BE/document-service
+    image: phucpham2212/kbase-document-service:latest
     container_name: kbase-document-service
     restart: unless-stopped
     environment:
@@ -227,6 +265,7 @@ services:
 
   kbase-frontend:
     build: ./FE/kbase-frontend
+    image: phucpham2212/kbase-frontend:latest
     container_name: kbase-frontend
     restart: unless-stopped
     ports:
