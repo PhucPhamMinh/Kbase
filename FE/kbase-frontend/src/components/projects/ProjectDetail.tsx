@@ -2,6 +2,7 @@
 
 import type { Project } from "@/lib/types";
 import { DocumentUpload } from "@/components/projects/DocumentUpload";
+import { ProjectMembers } from "@/components/projects/ProjectMembers";
 
 export function ProjectDetail({ project }: { project: Project | null }) {
   if (!project) {
@@ -36,6 +37,10 @@ export function ProjectDetail({ project }: { project: Project | null }) {
           </p>
         </div>
       </header>
+
+      <div className="w-full">
+        <ProjectMembers project={project} />
+      </div>
 
       <div className="w-full">
         <DocumentUpload projectId={project.projectId} />

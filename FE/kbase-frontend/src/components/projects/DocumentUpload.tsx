@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import * as yup from "yup";
 import { api } from "@/lib/api";
-import type { ApiResponse, DocumentItem } from "@/lib/types";
+import type { ApiResponse, DocumentItem, ProjectPermission } from "@/lib/types";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
@@ -25,6 +25,7 @@ type ReadUrlResponse = {
 export function DocumentUpload({ projectId }: { projectId: number }) {
   const [file, setFile] = useState<File | null>(null);
   const [documents, setDocuments] = useState<DocumentItem[]>([]);
+  const [permissions, setPermissions] = useState<ProjectPermission | null>(null);
   const [loadingDocuments, setLoadingDocuments] = useState(false);
   const [openingDocumentId, setOpeningDocumentId] = useState<number | null>(null);
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormValues>({
@@ -35,12 +36,20 @@ export function DocumentUpload({ projectId }: { projectId: number }) {
     const loadDocuments = async () => {
       setLoadingDocuments(true);
       try {
+        const permissionsResponse = await api.get<ApiResponse<ProjectPermission>>(`/api/projects/${projectId}/permissions/me`);
+        const nextPermissions = permissionsResponse.data.result;
+        setPermissions(nextPermissions);
+        if (!nextPermissions.canRead) {
+          setDocuments([]);
+          return;
+        }
         const response = await api.get<ApiResponse<DocumentItem[]>>("/api/documents", {
           params: { projectId }
         });
         setDocuments(response.data.result);
       } catch {
         setDocuments([]);
+        setPermissions(null);
       } finally {
         setLoadingDocuments(false);
       }
@@ -105,6 +114,37 @@ export function DocumentUpload({ projectId }: { projectId: number }) {
     }
   };
 
+  const updateDocument = async (document: DocumentItem) => {
+    const title = window.prompt("Document title", document.title);
+    if (!title) {
+      return;
+    }
+    const description = window.prompt("Document description", document.description || "") || "";
+    try {
+      const response = await api.put<ApiResponse<DocumentItem>>(`/api/documents/${document.documentId}`, {
+        title,
+        description
+      });
+      setDocuments((current) => current.map((item) => item.documentId === document.documentId ? response.data.result : item));
+      toast.success("Document updated");
+    } catch {
+      return;
+    }
+  };
+
+  const deleteDocument = async (documentId: number) => {
+    if (!window.confirm("Delete this document?")) {
+      return;
+    }
+    try {
+      await api.delete(`/api/documents/${documentId}`);
+      setDocuments((current) => current.filter((item) => item.documentId !== documentId));
+      toast.success("Document deleted");
+    } catch {
+      return;
+    }
+  };
+
   return (
     <div className="mx-auto w-full rounded-2xl border border-gray-100 bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.08)] md:p-10">
       <div className="grid gap-12 xl:grid-cols-[460px_1fr]">
@@ -114,7 +154,13 @@ export function DocumentUpload({ projectId }: { projectId: number }) {
             <p className="mt-2 text-base text-gray-500">Add new files to your project workspace.</p>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {!permissions?.canAdd && (
+            <div className="rounded-xl border border-gray-200 bg-gray-50 p-5 text-base font-medium text-gray-500">
+              You can view this project, but you do not have permission to upload documents.
+            </div>
+          )}
+
+          {permissions?.canAdd && <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
               <label className="mb-2 block text-base font-semibold text-[#030391]">Document Title</label>
               <input
@@ -158,7 +204,7 @@ export function DocumentUpload({ projectId }: { projectId: number }) {
             >
               {isSubmitting ? "Uploading..." : "Upload Document"}
             </button>
-          </form>
+          </form>}
         </div>
 
         <div className="flex min-h-[560px] flex-col rounded-2xl border border-gray-100 bg-gray-50 p-8">
@@ -192,14 +238,36 @@ export function DocumentUpload({ projectId }: { projectId: number }) {
                         <span className="shrink-0 font-medium text-[#1488D8]">{(document.fileSize / 1024 / 1024).toFixed(2)} MB</span>
                       </div>
                     </div>
-                    <button
-                      type="button"
-                      disabled={openingDocumentId !== null}
-                      onClick={() => openDocument(document.documentId)}
-                      className="shrink-0 rounded-lg border border-[#1488D8] px-4 py-3 text-sm font-bold text-[#1488D8] transition-colors hover:bg-[#1488D8] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
-                    >
-                      {openingDocumentId === document.documentId ? "Opening" : "Read"}
-                    </button>
+                    <div className="flex shrink-0 flex-wrap justify-end gap-2">
+                      {permissions?.canRead && (
+                        <button
+                          type="button"
+                          disabled={openingDocumentId !== null}
+                          onClick={() => openDocument(document.documentId)}
+                          className="rounded-lg border border-[#1488D8] px-4 py-3 text-sm font-bold text-[#1488D8] transition-colors hover:bg-[#1488D8] hover:text-white disabled:cursor-not-allowed disabled:opacity-50"
+                        >
+                          {openingDocumentId === document.documentId ? "Opening" : "Read"}
+                        </button>
+                      )}
+                      {permissions?.canModify && (
+                        <button
+                          type="button"
+                          onClick={() => updateDocument(document)}
+                          className="rounded-lg border border-gray-300 px-4 py-3 text-sm font-bold text-[#030391] transition-colors hover:border-[#030391] hover:bg-[#030391] hover:text-white"
+                        >
+                          Edit
+                        </button>
+                      )}
+                      {permissions?.canDelete && (
+                        <button
+                          type="button"
+                          onClick={() => deleteDocument(document.documentId)}
+                          className="rounded-lg border border-red-300 px-4 py-3 text-sm font-bold text-red-600 transition-colors hover:bg-red-600 hover:text-white"
+                        >
+                          Delete
+                        </button>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>

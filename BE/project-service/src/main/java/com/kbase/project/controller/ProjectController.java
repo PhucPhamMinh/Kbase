@@ -3,7 +3,10 @@ package com.kbase.project.controller;
 import com.kbase.project.common.ResponseTemplate;
 import com.kbase.project.dto.AddMemberRequest;
 import com.kbase.project.dto.CreateProjectRequest;
+import com.kbase.project.dto.InviteMemberRequest;
+import com.kbase.project.dto.ProjectInvitationResponse;
 import com.kbase.project.dto.ProjectMemberResponse;
+import com.kbase.project.dto.ProjectPermissionResponse;
 import com.kbase.project.dto.ProjectResponse;
 import com.kbase.project.dto.UpdateProjectRequest;
 import com.kbase.project.service.ProjectService;
@@ -52,12 +55,45 @@ public class ProjectController {
 
     @PostMapping("/{projectId}/members")
     public ResponseTemplate<ProjectMemberResponse> addMember(@PathVariable Long projectId,
+                                                             @RequestHeader("X-User-Id") Long userId,
                                                              @Valid @RequestBody AddMemberRequest request) {
-        return ResponseTemplate.success("Member added", projectService.addMember(projectId, request));
+        return ResponseTemplate.success("Member added", projectService.addMember(projectId, request, userId));
     }
 
     @GetMapping("/{projectId}/members")
     public ResponseTemplate<List<ProjectMemberResponse>> members(@PathVariable Long projectId) {
         return ResponseTemplate.success("Members loaded", projectService.members(projectId));
+    }
+
+    @GetMapping("/{projectId}/permissions/{userId}")
+    public ResponseTemplate<ProjectPermissionResponse> permissions(@PathVariable Long projectId,
+                                                                   @PathVariable Long userId) {
+        return ResponseTemplate.success("Permissions loaded", projectService.permissions(projectId, userId));
+    }
+
+    @GetMapping("/{projectId}/permissions/me")
+    public ResponseTemplate<ProjectPermissionResponse> myPermissions(@PathVariable Long projectId,
+                                                                     @RequestHeader("X-User-Id") Long userId) {
+        return ResponseTemplate.success("Permissions loaded", projectService.permissions(projectId, userId));
+    }
+
+    @PostMapping("/{projectId}/invitations")
+    public ResponseTemplate<ProjectInvitationResponse> inviteMember(@PathVariable Long projectId,
+                                                                    @RequestHeader("X-User-Id") Long userId,
+                                                                    @Valid @RequestBody InviteMemberRequest request) {
+        return ResponseTemplate.success("Invitation sent", projectService.inviteMember(projectId, userId, request));
+    }
+
+    @GetMapping("/{projectId}/invitations")
+    public ResponseTemplate<List<ProjectInvitationResponse>> invitations(@PathVariable Long projectId,
+                                                                        @RequestHeader("X-User-Id") Long userId) {
+        return ResponseTemplate.success("Invitations loaded", projectService.invitations(projectId, userId));
+    }
+
+    @PostMapping("/invitations/{token}/accept")
+    public ResponseTemplate<ProjectMemberResponse> acceptInvitation(@PathVariable String token,
+                                                                    @RequestHeader("X-User-Id") Long userId,
+                                                                    @RequestHeader("X-User-Email") String userEmail) {
+        return ResponseTemplate.success("Invitation accepted", projectService.acceptInvitation(token, userId, userEmail));
     }
 }

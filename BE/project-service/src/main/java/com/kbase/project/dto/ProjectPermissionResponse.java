@@ -1,15 +1,12 @@
 package com.kbase.project.dto;
 
-import com.kbase.project.model.MemberRole;
-
-public record ProjectMemberResponse(
+public record ProjectPermissionResponse(
         Long projectId,
         Long userId,
-        MemberRole role,
+        Boolean owner,
         Boolean canRead,
         Boolean canAdd,
         Boolean canModify,
-        Boolean canDelete,
-        Boolean active
+        Boolean canDelete
 ) {
 }

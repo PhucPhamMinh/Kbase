@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
-import software.amazon.awssdk.services.s3.model.PutObjectRequest;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.GetObjectRequest;
+import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 import software.amazon.awssdk.services.s3.presigner.model.GetObjectPresignRequest;
 
@@ -65,6 +66,17 @@ public class S3StorageService {
                 .build();
         String url = s3Presigner.presignGetObject(presignRequest).url().toString();
         return new ReadUrl(url, expiresAt);
+    }
+
+    public void delete(String storagePath) {
+        try {
+            s3Client.deleteObject(DeleteObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(storagePath)
+                    .build());
+        } catch (Exception ex) {
+            throw new BadRequestException("Unable to delete file from S3");
+        }
     }
 
     private void validateFile(MultipartFile file) {

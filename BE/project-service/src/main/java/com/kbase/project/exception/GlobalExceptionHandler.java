@@ -21,6 +21,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(ResponseTemplate.error(400, ex.getMessage(), null));
     }
 
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ResponseTemplate<Void>> forbidden(ForbiddenException ex) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ResponseTemplate.error(403, ex.getMessage(), null));
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ResponseTemplate<Void>> validation(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
