@@ -9,7 +9,7 @@ spring:
           "[/**]":
             allowed-origins:
               - "http://localhost:3000"
-              - "http://44.192.109.140:3000"
+              - "http://52.203.202.7:3000"
             allowed-methods:
               - GET
               - POST
