@@ -18,6 +18,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Create Frontend Env File
+        run: |
+          echo "NEXT_PUBLIC_API_BASE_URL=http://${{ secrets.EC2_HOST }}:8080" > FE/kbase-frontend/.env.production
 
       - name: Build and Push all services
         run: |
