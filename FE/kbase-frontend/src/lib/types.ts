@@ -68,4 +68,7 @@ export type DocumentItem = {
   storagePath: string;
   mimeType: string;
   description?: string;
+  deleted: boolean;
+  deletedAt?: string;
+  deleteAfter?: string;
 };

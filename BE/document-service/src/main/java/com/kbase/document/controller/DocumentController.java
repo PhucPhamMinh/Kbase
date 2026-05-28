@@ -6,6 +6,7 @@ import com.kbase.document.dto.DocumentResponse;
 import com.kbase.document.dto.UpdateDocumentRequest;
 import com.kbase.document.exception.BadRequestException;
 import com.kbase.document.service.DocumentService;
+import org.springframework.beans.factory.annotation.Value;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -29,9 +30,12 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/api/documents")
 public class DocumentController {
     private final DocumentService documentService;
+    private final String lambdaPurgeSecret;
 
-    public DocumentController(DocumentService documentService) {
+    public DocumentController(DocumentService documentService,
+                              @Value("${lambda.purge.secret}") String lambdaPurgeSecret) {
         this.documentService = documentService;
+        this.lambdaPurgeSecret = lambdaPurgeSecret;
     }
 
     @PostMapping(consumes = "multipart/form-data")
@@ -52,6 +56,12 @@ public class DocumentController {
         return ResponseTemplate.success("Documents loaded", documentService.findByProject(projectId, userId));
     }
 
+    @GetMapping("/deleted")
+    public ResponseTemplate<List<DocumentResponse>> deletedByProject(@RequestHeader("X-User-Id") Long userId,
+                                                                     @RequestParam @NotNull Long projectId) {
+        return ResponseTemplate.success("Deleted documents loaded", documentService.findDeletedByProject(projectId, userId));
+    }
+
     @GetMapping("/{documentId}")
     public ResponseTemplate<DocumentResponse> findById(@RequestHeader("X-User-Id") Long userId,
                                                        @PathVariable Long documentId) {
@@ -66,15 +76,28 @@ public class DocumentController {
     }
 
     @DeleteMapping("/{documentId}")
-    public ResponseTemplate<Void> delete(@RequestHeader("X-User-Id") Long userId,
-                                         @PathVariable Long documentId) {
-        documentService.delete(documentId, userId);
-        return ResponseTemplate.success("Document deleted", null);
+    public ResponseTemplate<DocumentResponse> delete(@RequestHeader("X-User-Id") Long userId,
+                                                     @PathVariable Long documentId) {
+        return ResponseTemplate.success("Document moved to trash", documentService.delete(documentId, userId));
+    }
+
+    @PostMapping("/{documentId}/restore")
+    public ResponseTemplate<DocumentResponse> restore(@RequestHeader("X-User-Id") Long userId,
+                                                      @PathVariable Long documentId) {
+        return ResponseTemplate.success("Document restored", documentService.restore(documentId, userId));
     }
 
     @GetMapping("/{documentId}/read-url")
     public ResponseTemplate<DocumentReadUrlResponse> readUrl(@RequestHeader("X-User-Id") Long userId,
                                                              @PathVariable Long documentId) {
         return ResponseTemplate.success("Document read URL created", documentService.createReadUrl(documentId, userId));
+    }
+
+    @DeleteMapping("/purge-expired")
+    public ResponseTemplate<Integer> purgeExpired(@RequestHeader("X-Lambda-Secret") String lambdaSecret) {
+        if (!lambdaPurgeSecret.equals(lambdaSecret)) {
+            throw new BadRequestException("Invalid purge secret");
+        }
+        return ResponseTemplate.success("Expired deleted documents purged", documentService.purgeExpiredSoftDeletedDocuments());
     }
 }

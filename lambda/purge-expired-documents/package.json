@@ -1,0 +1,13 @@
+{
+  "name": "kbase-purge-expired-documents",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check index.mjs",
+    "zip": "powershell -ExecutionPolicy Bypass -File ./scripts/package.ps1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,251 @@
+Date : 2026-05-28 09:10:25
+Directory : c:\BachKhoa\Kbase
+Total : 118 files,  11779 codes, 166 comments, 814 blanks, all 12759 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          2 |      7,071 |          0 |          2 |      7,073 |
+| Java               |         64 |      1,672 |          0 |        335 |      2,007 |
+| TypeScript JSX     |         11 |      1,039 |         29 |        106 |      1,174 |
+| Markdown           |          5 |        972 |          0 |        234 |      1,206 |
+| TypeScript         |          8 |        248 |          4 |         37 |        289 |
+| YAML               |          3 |        246 |        131 |         35 |        412 |
+| XML                |          5 |        221 |          0 |          5 |        226 |
+| MS SQL             |          5 |        118 |          0 |         18 |        136 |
+| Docker             |          6 |         66 |          1 |         13 |         80 |
+| Java Properties    |          4 |         56 |          0 |         20 |         76 |
+| JSON with Comments |          1 |         41 |          0 |          1 |         42 |
+| PostCSS            |          1 |         17 |          0 |          4 |         21 |
+| JavaScript         |          2 |         10 |          1 |          3 |         14 |
+| Ini                |          1 |          2 |          0 |          1 |          3 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                             | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                |        118 |     11,779 |        166 |        814 |     12,759 |
+| . (Files)                                                                                                        |          3 |        176 |        131 |         32 |        339 |
+| .github                                                                                                          |          1 |         40 |          0 |          9 |         49 |
+| .github\workflows                                                                                                |          1 |         40 |          0 |          9 |         49 |
+| BE                                                                                                               |         79 |      2,061 |          0 |        375 |      2,436 |
+| BE\api-gateway                                                                                                   |          5 |        216 |          0 |         21 |        237 |
+| BE\api-gateway (Files)                                                                                           |          2 |         78 |          0 |          3 |         81 |
+| BE\api-gateway\src                                                                                               |          3 |        138 |          0 |         18 |        156 |
+| BE\api-gateway\src\main                                                                                          |          3 |        138 |          0 |         18 |        156 |
+| BE\api-gateway\src\main\java                                                                                     |          2 |         76 |          0 |         13 |         89 |
+| BE\api-gateway\src\main\java\com                                                                                 |          2 |         76 |          0 |         13 |         89 |
+| BE\api-gateway\src\main\java\com\kbase                                                                           |          2 |         76 |          0 |         13 |         89 |
+| BE\api-gateway\src\main\java\com\kbase\gateway                                                                   |          2 |         76 |          0 |         13 |         89 |
+| BE\api-gateway\src\main\java\com\kbase\gateway (Files)                                                           |          1 |         11 |          0 |          3 |         14 |
+| BE\api-gateway\src\main\java\com\kbase\gateway\security                                                          |          1 |         65 |          0 |         10 |         75 |
+| BE\api-gateway\src\main\resources                                                                                |          1 |         62 |          0 |          5 |         67 |
+| BE\document-service                                                                                              |         20 |        557 |          0 |        103 |        660 |
+| BE\document-service (Files)                                                                                      |          2 |         44 |          0 |          3 |         47 |
+| BE\document-service\src                                                                                          |         18 |        513 |          0 |        100 |        613 |
+| BE\document-service\src\main                                                                                     |         18 |        513 |          0 |        100 |        613 |
+| BE\document-service\src\main\java                                                                                |         17 |        496 |          0 |         93 |        589 |
+| BE\document-service\src\main\java\com                                                                            |         17 |        496 |          0 |         93 |        589 |
+| BE\document-service\src\main\java\com\kbase                                                                      |         17 |        496 |          0 |         93 |        589 |
+| BE\document-service\src\main\java\com\kbase\document                                                             |         17 |        496 |          0 |         93 |        589 |
+| BE\document-service\src\main\java\com\kbase\document (Files)                                                     |          1 |         11 |          0 |          3 |         14 |
+| BE\document-service\src\main\java\com\kbase\document\common                                                      |          1 |         10 |          0 |          4 |         14 |
+| BE\document-service\src\main\java\com\kbase\document\config                                                      |          2 |         29 |          0 |          7 |         36 |
+| BE\document-service\src\main\java\com\kbase\document\controller                                                  |          1 |         71 |          0 |         10 |         81 |
+| BE\document-service\src\main\java\com\kbase\document\dto                                                         |          4 |         37 |          0 |         10 |         47 |
+| BE\document-service\src\main\java\com\kbase\document\exception                                                   |          3 |         45 |          0 |         10 |         55 |
+| BE\document-service\src\main\java\com\kbase\document\model                                                       |          1 |         46 |          0 |         14 |         60 |
+| BE\document-service\src\main\java\com\kbase\document\repository                                                  |          1 |          7 |          0 |          3 |         10 |
+| BE\document-service\src\main\java\com\kbase\document\service                                                     |          3 |        240 |          0 |         32 |        272 |
+| BE\document-service\src\main\resources                                                                           |          1 |         17 |          0 |          7 |         24 |
+| BE\eureka-server                                                                                                 |          4 |         68 |          0 |          8 |         76 |
+| BE\eureka-server (Files)                                                                                         |          2 |         52 |          0 |          3 |         55 |
+| BE\eureka-server\src                                                                                             |          2 |         16 |          0 |          5 |         21 |
+| BE\eureka-server\src\main                                                                                        |          2 |         16 |          0 |          5 |         21 |
+| BE\eureka-server\src\main\java                                                                                   |          1 |         11 |          0 |          3 |         14 |
+| BE\eureka-server\src\main\java\com                                                                               |          1 |         11 |          0 |          3 |         14 |
+| BE\eureka-server\src\main\java\com\kbase                                                                         |          1 |         11 |          0 |          3 |         14 |
+| BE\eureka-server\src\main\java\com\kbase\eureka                                                                  |          1 |         11 |          0 |          3 |         14 |
+| BE\eureka-server\src\main\resources                                                                              |          1 |          5 |          0 |          2 |          7 |
+| BE\project-service                                                                                               |         29 |        806 |          0 |        155 |        961 |
+| BE\project-service (Files)                                                                                       |          2 |         44 |          0 |          3 |         47 |
+| BE\project-service\src                                                                                           |         27 |        762 |          0 |        152 |        914 |
+| BE\project-service\src\main                                                                                      |         27 |        762 |          0 |        152 |        914 |
+| BE\project-service\src\main\java                                                                                 |         26 |        742 |          0 |        146 |        888 |
+| BE\project-service\src\main\java\com                                                                             |         26 |        742 |          0 |        146 |        888 |
+| BE\project-service\src\main\java\com\kbase                                                                       |         26 |        742 |          0 |        146 |        888 |
+| BE\project-service\src\main\java\com\kbase\project                                                               |         26 |        742 |          0 |        146 |        888 |
+| BE\project-service\src\main\java\com\kbase\project (Files)                                                       |          1 |         11 |          0 |          3 |         14 |
+| BE\project-service\src\main\java\com\kbase\project\common                                                        |          1 |         10 |          0 |          4 |         14 |
+| BE\project-service\src\main\java\com\kbase\project\controller                                                    |          1 |         85 |          0 |         15 |        100 |
+| BE\project-service\src\main\java\com\kbase\project\dto                                                           |          8 |         78 |          0 |         22 |        100 |
+| BE\project-service\src\main\java\com\kbase\project\exception                                                     |          4 |         52 |          0 |         13 |         65 |
+| BE\project-service\src\main\java\com\kbase\project\model                                                         |          6 |        161 |          0 |         44 |        205 |
+| BE\project-service\src\main\java\com\kbase\project\repository                                                    |          3 |         27 |          0 |          9 |         36 |
+| BE\project-service\src\main\java\com\kbase\project\service                                                       |          2 |        318 |          0 |         36 |        354 |
+| BE\project-service\src\main\resources                                                                            |          1 |         20 |          0 |          6 |         26 |
+| BE\user-service                                                                                                  |         21 |        414 |          0 |         88 |        502 |
+| BE\user-service (Files)                                                                                          |          2 |         53 |          0 |          3 |         56 |
+| BE\user-service\src                                                                                              |         19 |        361 |          0 |         85 |        446 |
+| BE\user-service\src\main                                                                                         |         19 |        361 |          0 |         85 |        446 |
+| BE\user-service\src\main\java                                                                                    |         18 |        347 |          0 |         80 |        427 |
+| BE\user-service\src\main\java\com                                                                                |         18 |        347 |          0 |         80 |        427 |
+| BE\user-service\src\main\java\com\kbase                                                                          |         18 |        347 |          0 |         80 |        427 |
+| BE\user-service\src\main\java\com\kbase\user                                                                     |         18 |        347 |          0 |         80 |        427 |
+| BE\user-service\src\main\java\com\kbase\user (Files)                                                             |          1 |         11 |          0 |          3 |         14 |
+| BE\user-service\src\main\java\com\kbase\user\common                                                              |          1 |         10 |          0 |          4 |         14 |
+| BE\user-service\src\main\java\com\kbase\user\config                                                              |          1 |         20 |          0 |          4 |         24 |
+| BE\user-service\src\main\java\com\kbase\user\controller                                                          |          2 |         67 |          0 |         14 |         81 |
+| BE\user-service\src\main\java\com\kbase\user\dto                                                                 |          5 |         30 |          0 |         14 |         44 |
+| BE\user-service\src\main\java\com\kbase\user\exception                                                           |          3 |         44 |          0 |         10 |         54 |
+| BE\user-service\src\main\java\com\kbase\user\model                                                               |          2 |         52 |          0 |         13 |         65 |
+| BE\user-service\src\main\java\com\kbase\user\repository                                                          |          1 |          8 |          0 |          3 |         11 |
+| BE\user-service\src\main\java\com\kbase\user\service                                                             |          2 |        105 |          0 |         15 |        120 |
+| BE\user-service\src\main\resources                                                                               |          1 |         14 |          0 |          5 |         19 |
+| FE                                                                                                               |         26 |      8,442 |         35 |        156 |      8,633 |
+| FE\kbase-frontend                                                                                                |         26 |      8,442 |         35 |        156 |      8,633 |
+| FE\kbase-frontend (Files)                                                                                        |          8 |      7,156 |          6 |         14 |      7,176 |
+| FE\kbase-frontend\src                                                                                            |         18 |      1,286 |         29 |        142 |      1,457 |
+| FE\kbase-frontend\src\app                                                                                        |          4 |        104 |          0 |         18 |        122 |
+| FE\kbase-frontend\src\app (Files)                                                                                |          3 |         34 |          0 |          8 |         42 |
+| FE\kbase-frontend\src\app\invitations                                                                            |          1 |         70 |          0 |         10 |         80 |
+| FE\kbase-frontend\src\app\invitations\accept                                                                     |          1 |         70 |          0 |         10 |         80 |
+| FE\kbase-frontend\src\components                                                                                 |          8 |        952 |         29 |         92 |      1,073 |
+| FE\kbase-frontend\src\components (Files)                                                                         |          2 |        130 |          0 |         12 |        142 |
+| FE\kbase-frontend\src\components\auth                                                                            |          2 |        206 |         20 |         21 |        247 |
+| FE\kbase-frontend\src\components\projects                                                                        |          4 |        616 |          9 |         59 |        684 |
+| FE\kbase-frontend\src\lib                                                                                        |          2 |         88 |          0 |         11 |         99 |
+| FE\kbase-frontend\src\store                                                                                      |          4 |        142 |          0 |         21 |        163 |
+| TRAINING                                                                                                         |          4 |        942 |          0 |        224 |      1,166 |
+| TRAINING\TRAINING                                                                                                |          4 |        942 |          0 |        224 |      1,166 |
+| database                                                                                                         |          5 |        118 |          0 |         18 |        136 |
+| database\init                                                                                                    |          4 |         84 |          0 |         13 |         97 |
+| database\migrations                                                                                              |          1 |         34 |          0 |          5 |         39 |
++------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                                         | language           | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| c:\BachKhoa\Kbase\.github\workflows\deploy.yml                                                                   | YAML               |         40 |          0 |          9 |         49 |
+| c:\BachKhoa\Kbase\BE\api-gateway\Dockerfile                                                                      | Docker             |         10 |          0 |          2 |         12 |
+| c:\BachKhoa\Kbase\BE\api-gateway\pom.xml                                                                         | XML                |         68 |          0 |          1 |         69 |
+| c:\BachKhoa\Kbase\BE\api-gateway\src\main\java\com\kbase\gateway\ApiGatewayApplication.java                      | Java               |         11 |          0 |          3 |         14 |
+| c:\BachKhoa\Kbase\BE\api-gateway\src\main\java\com\kbase\gateway\security\JwtAuthenticationFilter.java           | Java               |         65 |          0 |         10 |         75 |
+| c:\BachKhoa\Kbase\BE\api-gateway\src\main\resources\application.yml                                              | YAML               |         62 |          0 |          5 |         67 |
+| c:\BachKhoa\Kbase\BE\document-service\Dockerfile                                                                 | Docker             |         10 |          0 |          2 |         12 |
+| c:\BachKhoa\Kbase\BE\document-service\pom.xml                                                                    | XML                |         34 |          0 |          1 |         35 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\DocumentServiceApplication.java           | Java               |         11 |          0 |          3 |         14 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\common\ResponseTemplate.java              | Java               |         10 |          0 |          4 |         14 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\config\RestClientConfig.java              | Java               |         11 |          0 |          3 |         14 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\config\S3Config.java                      | Java               |         18 |          0 |          4 |         22 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\controller\DocumentController.java        | Java               |         71 |          0 |         10 |         81 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\dto\DocumentReadUrlResponse.java          | Java               |          4 |          0 |          3 |          7 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\dto\DocumentResponse.java                 | Java               |         14 |          0 |          2 |         16 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\dto\ProjectPermissionResponse.java        | Java               |         11 |          0 |          2 |         13 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\dto\UpdateDocumentRequest.java            | Java               |          8 |          0 |          3 |         11 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\exception\BadRequestException.java        | Java               |          6 |          0 |          2 |          8 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\exception\GlobalExceptionHandler.java     | Java               |         33 |          0 |          6 |         39 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\exception\ResourceNotFoundException.java  | Java               |          6 |          0 |          2 |          8 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\model\Document.java                       | Java               |         46 |          0 |         14 |         60 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\repository\DocumentRepository.java        | Java               |          7 |          0 |          3 |         10 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\service\DocumentService.java              | Java               |         99 |          0 |         13 |        112 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\service\ProjectPermissionClient.java      | Java               |         57 |          0 |          9 |         66 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\java\com\kbase\document\service\S3StorageService.java             | Java               |         84 |          0 |         10 |         94 |
+| c:\BachKhoa\Kbase\BE\document-service\src\main\resources\application.properties                                  | Java Properties    |         17 |          0 |          7 |         24 |
+| c:\BachKhoa\Kbase\BE\eureka-server\Dockerfile                                                                    | Docker             |         10 |          0 |          2 |         12 |
+| c:\BachKhoa\Kbase\BE\eureka-server\pom.xml                                                                       | XML                |         42 |          0 |          1 |         43 |
+| c:\BachKhoa\Kbase\BE\eureka-server\src\main\java\com\kbase\eureka\EurekaServerApplication.java                   | Java               |         11 |          0 |          3 |         14 |
+| c:\BachKhoa\Kbase\BE\eureka-server\src\main\resources\application.properties                                     | Java Properties    |          5 |          0 |          2 |          7 |
+| c:\BachKhoa\Kbase\BE\project-service\Dockerfile                                                                  | Docker             |         10 |          0 |          2 |         12 |
+| c:\BachKhoa\Kbase\BE\project-service\pom.xml                                                                     | XML                |         34 |          0 |          1 |         35 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\ProjectServiceApplication.java              | Java               |         11 |          0 |          3 |         14 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\common\ResponseTemplate.java                | Java               |         10 |          0 |          4 |         14 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\controller\ProjectController.java           | Java               |         85 |          0 |         15 |        100 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\dto\AddMemberRequest.java                   | Java               |         12 |          0 |          3 |         15 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\dto\CreateProjectRequest.java               | Java               |          5 |          0 |          3 |          8 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\dto\InviteMemberRequest.java                | Java               |         12 |          0 |          3 |         15 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\dto\ProjectInvitationResponse.java          | Java               |         17 |          0 |          3 |         20 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\dto\ProjectMemberResponse.java              | Java               |         13 |          0 |          3 |         16 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\dto\ProjectPermissionResponse.java          | Java               |         11 |          0 |          2 |         13 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\dto\ProjectResponse.java                    | Java               |          3 |          0 |          2 |          5 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\dto\UpdateProjectRequest.java               | Java               |          5 |          0 |          3 |          8 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\exception\BadRequestException.java          | Java               |          6 |          0 |          2 |          8 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\exception\ForbiddenException.java           | Java               |          6 |          0 |          2 |          8 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\exception\GlobalExceptionHandler.java       | Java               |         34 |          0 |          7 |         41 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\exception\ResourceNotFoundException.java    | Java               |          6 |          0 |          2 |          8 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\model\InvitationStatus.java                 | Java               |          6 |          0 |          2 |          8 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\model\MemberRole.java                       | Java               |          6 |          0 |          2 |          8 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\model\Project.java                          | Java               |         36 |          0 |          9 |         45 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\model\ProjectInvitation.java                | Java               |         53 |          0 |         16 |         69 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\model\ProjectMember.java                    | Java               |         39 |          0 |         11 |         50 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\model\ProjectMemberId.java                  | Java               |         21 |          0 |          4 |         25 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\repository\ProjectInvitationRepository.java | Java               |         11 |          0 |          3 |         14 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\repository\ProjectMemberRepository.java     | Java               |          9 |          0 |          3 |         12 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\repository\ProjectRepository.java           | Java               |          7 |          0 |          3 |         10 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\service\EmailService.java                   | Java               |         57 |          0 |         10 |         67 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\java\com\kbase\project\service\ProjectService.java                 | Java               |        261 |          0 |         26 |        287 |
+| c:\BachKhoa\Kbase\BE\project-service\src\main\resources\application.properties                                   | Java Properties    |         20 |          0 |          6 |         26 |
+| c:\BachKhoa\Kbase\BE\user-service\Dockerfile                                                                     | Docker             |         10 |          0 |          2 |         12 |
+| c:\BachKhoa\Kbase\BE\user-service\pom.xml                                                                        | XML                |         43 |          0 |          1 |         44 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\UserServiceApplication.java                       | Java               |         11 |          0 |          3 |         14 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\common\ResponseTemplate.java                      | Java               |         10 |          0 |          4 |         14 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\config\SecurityConfig.java                        | Java               |         20 |          0 |          4 |         24 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\controller\AuthController.java                    | Java               |         28 |          0 |          6 |         34 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\controller\UserController.java                    | Java               |         39 |          0 |          8 |         47 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\dto\AuthResponse.java                             | Java               |          3 |          0 |          2 |          5 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\dto\LoginRequest.java                             | Java               |          5 |          0 |          3 |          8 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\dto\RegisterRequest.java                          | Java               |         13 |          0 |          3 |         16 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\dto\UpdateProfileRequest.java                     | Java               |          5 |          0 |          3 |          8 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\dto\UserResponse.java                             | Java               |          4 |          0 |          3 |          7 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\exception\BadRequestException.java                | Java               |          6 |          0 |          2 |          8 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\exception\GlobalExceptionHandler.java             | Java               |         32 |          0 |          6 |         38 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\exception\ResourceNotFoundException.java          | Java               |          6 |          0 |          2 |          8 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\model\User.java                                   | Java               |         46 |          0 |         11 |         57 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\model\UserRole.java                               | Java               |          6 |          0 |          2 |          8 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\repository\UserRepository.java                    | Java               |          8 |          0 |          3 |         11 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\service\JwtService.java                           | Java               |         31 |          0 |          5 |         36 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\java\com\kbase\user\service\UserService.java                          | Java               |         74 |          0 |         10 |         84 |
+| c:\BachKhoa\Kbase\BE\user-service\src\main\resources\application.properties                                      | Java Properties    |         14 |          0 |          5 |         19 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\Dockerfile                                                                   | Docker             |         16 |          1 |          3 |         20 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\next-env.d.ts                                                                | TypeScript         |          1 |          4 |          2 |          7 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\next.config.mjs                                                              | JavaScript         |          4 |          1 |          2 |          7 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\package-lock.json                                                            | JSON               |      7,037 |          0 |          1 |      7,038 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\package.json                                                                 | JSON               |         34 |          0 |          1 |         35 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\postcss.config.js                                                            | JavaScript         |          6 |          0 |          1 |          7 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\app\globals.css                                                          | PostCSS            |         17 |          0 |          4 |         21 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\app\invitations\accept\page.tsx                                          | TypeScript JSX     |         70 |          0 |         10 |         80 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\app\layout.tsx                                                           | TypeScript JSX     |         13 |          0 |          2 |         15 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\app\page.tsx                                                             | TypeScript JSX     |          4 |          0 |          2 |          6 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\components\HomeShell.tsx                                                 | TypeScript JSX     |         93 |          0 |          9 |        102 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\components\Providers.tsx                                                 | TypeScript JSX     |         37 |          0 |          3 |         40 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\components\auth\LoginForm.tsx                                            | TypeScript JSX     |         85 |          4 |          9 |         98 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\components\auth\RegisterForm.tsx                                         | TypeScript JSX     |        121 |         16 |         12 |        149 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\components\projects\DocumentUpload.tsx                                   | TypeScript JSX     |        260 |          0 |         21 |        281 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\components\projects\ProjectDashboard.tsx                                 | TypeScript JSX     |        134 |          9 |         16 |        159 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\components\projects\ProjectDetail.tsx                                    | TypeScript JSX     |         45 |          0 |          6 |         51 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\components\projects\ProjectMembers.tsx                                   | TypeScript JSX     |        177 |          0 |         16 |        193 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\lib\api.ts                                                               | TypeScript         |         23 |          0 |          4 |         27 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\lib\types.ts                                                             | TypeScript         |         65 |          0 |          7 |         72 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\store\authSlice.ts                                                       | TypeScript         |         77 |          0 |          9 |         86 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\store\hooks.ts                                                           | TypeScript         |          4 |          0 |          2 |          6 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\store\projectSlice.ts                                                    | TypeScript         |         50 |          0 |          7 |         57 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\src\store\store.ts                                                           | TypeScript         |         11 |          0 |          3 |         14 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\tailwind.config.ts                                                           | TypeScript         |         17 |          0 |          3 |         20 |
+| c:\BachKhoa\Kbase\FE\kbase-frontend\tsconfig.json                                                                | JSON with Comments |         41 |          0 |          1 |         42 |
+| c:\BachKhoa\Kbase\README.md                                                                                      | Markdown           |         30 |          0 |         10 |         40 |
+| c:\BachKhoa\Kbase\TRAINING\TRAINING\BackEnd.md                                                                   | Markdown           |        342 |          0 |         89 |        431 |
+| c:\BachKhoa\Kbase\TRAINING\TRAINING\Database.md                                                                  | Markdown           |        180 |          0 |         31 |        211 |
+| c:\BachKhoa\Kbase\TRAINING\TRAINING\FrontEnd.md                                                                  | Markdown           |        333 |          0 |         71 |        404 |
+| c:\BachKhoa\Kbase\TRAINING\TRAINING\Training.md                                                                  | Markdown           |         87 |          0 |         33 |        120 |
+| c:\BachKhoa\Kbase\database\init\00-create-databases.sql                                                          | MS SQL             |          3 |          0 |          1 |          4 |
+| c:\BachKhoa\Kbase\database\init\01-user-schema.sql                                                               | MS SQL             |         13 |          0 |          3 |         16 |
+| c:\BachKhoa\Kbase\database\init\02-project-schema.sql                                                            | MS SQL             |         50 |          0 |          6 |         56 |
+| c:\BachKhoa\Kbase\database\init\03-document-schema.sql                                                           | MS SQL             |         18 |          0 |          3 |         21 |
+| c:\BachKhoa\Kbase\database\migrations\20260527_project_member_invitations.sql                                    | MS SQL             |         34 |          0 |          5 |         39 |
+| c:\BachKhoa\Kbase\desktop.ini                                                                                    | Ini                |          2 |          0 |          1 |          3 |
+| c:\BachKhoa\Kbase\docker-compose.yml                                                                             | YAML               |        144 |        131 |         21 |        296 |
+| Total                                                                                                            |                    |     11,779 |        166 |        814 |     12,759 |
++------------------------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

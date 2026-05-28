@@ -10,6 +10,9 @@ public record DocumentResponse(
         Long fileSize,
         String storagePath,
         String mimeType,
-        String description
+        String description,
+        Boolean deleted,
+        String deletedAt,
+        String deleteAfter
 ) {
 }

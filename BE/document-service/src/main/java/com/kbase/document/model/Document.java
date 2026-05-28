@@ -49,6 +49,18 @@ public class Document {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(name = "is_deleted", nullable = false)
+    private Boolean deleted = false;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
+
+    @Column(name = "deleted_by")
+    private Long deletedBy;
+
+    @Column(name = "delete_after")
+    private LocalDateTime deleteAfter;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

@@ -263,6 +263,7 @@ services:
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       PROJECT_SERVICE_URL: http://project-service:8082
+      LAMBDA_PURGE_SECRET: ${LAMBDA_PURGE_SECRET:-change-this-lambda-purge-secret}
       EUREKA_URI: http://eureka-server:8761/eureka
     depends_on:
       postgres:

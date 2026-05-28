@@ -25,6 +25,7 @@ type ReadUrlResponse = {
 export function DocumentUpload({ projectId }: { projectId: number }) {
   const [file, setFile] = useState<File | null>(null);
   const [documents, setDocuments] = useState<DocumentItem[]>([]);
+  const [deletedDocuments, setDeletedDocuments] = useState<DocumentItem[]>([]);
   const [permissions, setPermissions] = useState<ProjectPermission | null>(null);
   const [loadingDocuments, setLoadingDocuments] = useState(false);
   const [openingDocumentId, setOpeningDocumentId] = useState<number | null>(null);
@@ -41,14 +42,24 @@ export function DocumentUpload({ projectId }: { projectId: number }) {
         setPermissions(nextPermissions);
         if (!nextPermissions.canRead) {
           setDocuments([]);
+          setDeletedDocuments([]);
           return;
         }
         const response = await api.get<ApiResponse<DocumentItem[]>>("/api/documents", {
           params: { projectId }
         });
         setDocuments(response.data.result);
+        if (nextPermissions.canDelete) {
+          const deletedResponse = await api.get<ApiResponse<DocumentItem[]>>("/api/documents/deleted", {
+            params: { projectId }
+          });
+          setDeletedDocuments(deletedResponse.data.result);
+        } else {
+          setDeletedDocuments([]);
+        }
       } catch {
         setDocuments([]);
+        setDeletedDocuments([]);
         setPermissions(null);
       } finally {
         setLoadingDocuments(false);
@@ -133,13 +144,25 @@ export function DocumentUpload({ projectId }: { projectId: number }) {
   };
 
   const deleteDocument = async (documentId: number) => {
-    if (!window.confirm("Delete this document?")) {
+    if (!window.confirm("Move this document to trash for 30 days?")) {
       return;
     }
     try {
-      await api.delete(`/api/documents/${documentId}`);
+      const response = await api.delete<ApiResponse<DocumentItem>>(`/api/documents/${documentId}`);
       setDocuments((current) => current.filter((item) => item.documentId !== documentId));
-      toast.success("Document deleted");
+      setDeletedDocuments((current) => [response.data.result, ...current]);
+      toast.success("Document moved to trash");
+    } catch {
+      return;
+    }
+  };
+
+  const restoreDocument = async (documentId: number) => {
+    try {
+      const response = await api.post<ApiResponse<DocumentItem>>(`/api/documents/${documentId}/restore`);
+      setDeletedDocuments((current) => current.filter((item) => item.documentId !== documentId));
+      setDocuments((current) => [response.data.result, ...current]);
+      toast.success("Document restored");
     } catch {
       return;
     }
@@ -273,6 +296,44 @@ export function DocumentUpload({ projectId }: { projectId: number }) {
               </div>
             )}
           </div>
+
+          {permissions?.canDelete && (
+            <div className="mt-8 border-t border-gray-200 pt-8">
+              <div className="mb-5 flex items-center justify-between gap-3">
+                <h3 className="text-xl font-bold text-[#030391]">Trash</h3>
+                <span className="rounded-full bg-red-50 px-4 py-2 text-sm font-bold text-red-600">
+                  {deletedDocuments.length} {deletedDocuments.length === 1 ? "file" : "files"}
+                </span>
+              </div>
+
+              {deletedDocuments.length === 0 ? (
+                <div className="rounded-xl border border-dashed border-gray-300 bg-white p-6 text-center text-sm text-gray-400">
+                  Deleted documents will stay here for 30 days before the Lambda purge removes them.
+                </div>
+              ) : (
+                <div className="grid gap-3">
+                  {deletedDocuments.map((document) => (
+                    <div key={document.documentId} className="flex items-start gap-4 rounded-xl border border-red-100 bg-white p-4">
+                      <div className="min-w-0 flex-1">
+                        <p className="truncate text-base font-bold text-[#030391]">{document.title}</p>
+                        <p className="mt-1 truncate text-sm text-gray-500">{document.fileName}</p>
+                        <p className="mt-1 text-xs text-red-500">
+                          Auto-delete after {document.deleteAfter ? new Date(document.deleteAfter).toLocaleString() : "30 days"}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => restoreDocument(document.documentId)}
+                        className="shrink-0 rounded-lg border border-[#1488D8] px-4 py-3 text-sm font-bold text-[#1488D8] transition-colors hover:bg-[#1488D8] hover:text-white"
+                      >
+                        Restore
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
