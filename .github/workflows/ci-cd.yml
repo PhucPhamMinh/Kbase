@@ -28,8 +28,8 @@ jobs:
 
       - name: Build and Push all services
         run: |
-          docker compose build
-          docker compose push
+          docker-compose build
+          docker-compose push
 
   # =========================================================
   # LUỒNG 2: TRIỂN KHAI LÊN EC2 (Chạy sau khi đã đẩy Docker xong)
@@ -48,10 +48,10 @@ jobs:
           script: |
             cd ~/kbase-deploy
             
-            docker compose pull
+            docker-compose pull
             
-            docker compose down
-            docker compose up -d
+            docker-compose down
+            docker-compose up -d
             
             docker image prune -af
 
